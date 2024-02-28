@@ -1,15 +1,16 @@
 // ==UserScript==
 // @name         TradingView Economic Calendar Grabber
 // @namespace    http://tampermonkey.net/
-// @version      2024-02-27
-// @description  try to take over the world!
+// @version      1.0
+// @description  Get interesting events from economic calendar
 // @author       You
 // @match        https://www.tradingview.com/chart/*
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @grant        none
+// @require  https://gist.github.com/raw/2625891/waitForKeyElements.js
 // ==/UserScript==
 
-(function() {
+function mainish() {
     'use strict';
 
     function hasClass(classes, search_str) {
@@ -82,5 +83,6 @@
 
     addCopyButton(rh)
     addCheckBoxes(calender_entries)
+};
 
-})();
+waitForKeyElements("div[class$='widgetbar-widget-reuters_calendar']", mainish);
