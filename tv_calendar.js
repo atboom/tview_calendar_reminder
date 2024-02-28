@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         TradingView Economic Calendar Grabber
 // @namespace    http://tampermonkey.net/
-// @version      1.1.1
+// @version      1.1.2
 // @description  Get interesting events from economic calendar
 // @author       You
 // @match        https://www.tradingview.com/chart/*
@@ -96,4 +96,4 @@ while(i <= 10){
         break;
     };
 };
-waitForKeyElements("div[class$='widgetbar-widget-reuters_calendar']", mainish);
+mainish();
