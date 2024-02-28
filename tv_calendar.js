@@ -17,7 +17,7 @@ while(i <= 10){
     }, seconds * 1000);
     i++;
     let loaded = document.querySelector("div[class$='widgetbar-widget-reuters_calendar']");
-    console.log(loaded.textContent.slice(0, 10))
+    console.log(loaded.textContent.slice(0, 10));
     if (loaded) {
         i = 100;
     };
