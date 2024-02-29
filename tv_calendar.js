@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         TradingView Economic Calendar Grabber
 // @namespace    http://tampermonkey.net/
-// @version      1.1.16
+// @version      1.1.17
 // @description  Get interesting events from economic calendar
 // @author       You
 // @match        https://www.tradingview.com/chart/*
@@ -78,7 +78,7 @@ function copyButtonClick() {
 function mainish(node) {
     'use strict';
 
-    setTimer(() => {console.log("waiting in main")}, 10000);
+    setTimeout(() => {console.log("waiting in main")}, 10000);
 
     var elem = document.querySelector("div[class$='widgetbar-widget-reuters_calendar']");
     console.log("elem: " + elem)
