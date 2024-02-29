@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         TradingView Economic Calendar Grabber
 // @namespace    http://tampermonkey.net/
-// @version      1.1.14
+// @version      1.1.15
 // @description  Get interesting events from economic calendar
 // @author       You
 // @match        https://www.tradingview.com/chart/*
@@ -93,6 +93,8 @@ function mainish(node) {
     try {
         header = elem.querySelector("div[class^='widgetHeader']");
         rh = header.querySelector("div[class^='rightSlot']");
+        console.log("header: " + header)
+        console.log("rh: " + rh)
     
         addCopyButton(rh)
         addCheckBoxes(calender_entries)
