@@ -38,19 +38,22 @@ function addCheckBox(node, name, value) {
 };
 
 function addCheckBoxes(calender_entries) {
-    let found_today = null
+    let found_today = null;
     for (let i = 0; i < calender_entries.length; i++) {
-        let node = calender_entries[i]
+        let node = calender_entries[i];
         if (hasClass(node.classList, "spinnerContainer") || hasClass(node.classList, "timelineDivider")) {
             continue;
         } else if (hasClass(node.classList, "separator")) {
-            let element_date = new Date (node.querySelector("div[class^='innerWrapper']").querySelector("span").textContent);
+            let element_date = node.querySelector("div[class^='innerWrapper']").querySelector("span").textContent;
+            element_date = element_date.split(' ');
+            
             let current_date = new Date();
+            let month = current_date.toLocaleString('default', { month: 'long' });
 
-            if (element_date.getMonth() == current_date.getMonth() && element_date.getDate() < current_date.getDate()) {
+            if (element_date[0] == month && element_date[1] < current_date.getDate()) {
                 continue;
-            } else if (element_date.getMonth() == current_date.getMonth() && element_date.getDate() == current_date.getDate()) {
-                found_today = true
+            } else if (element_date[0] == month && element_date[1] == current_date.getDate()) {
+                found_today = true;
                 continue;
             } else {
                 break;
@@ -87,14 +90,12 @@ function mainish(node) {
     // setTimeout(() => {console.log("waiting in main")}, 10000);
 
     var elem = document.querySelector("div[class$='widgetbar-widget-reuters_calendar']");
-    console.log("elem: " + elem)
-    var calender_entries = null
-    var header = null
-    var rh = null
+    console.log("elem: " + elem);
+    var calender_entries = null;
+    var header = null;
+    var rh = null;
     try {
         calender_entries = elem.querySelector("div[class^='economicCalendarItem']").parentElement.childNodes;
-
-        rh = header.querySelector("div[class^='rightSlot']");    
     } catch(err) {
         console.log("1: " + err)
     }
