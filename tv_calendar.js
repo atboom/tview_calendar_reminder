@@ -1,36 +1,19 @@
 // ==UserScript==
 // @name         TradingView Economic Calendar Grabber
 // @namespace    http://tampermonkey.net/
-// @version      1.1.8
+// @version      1.1.9
 // @description  Get interesting events from economic calendar
 // @author       You
 // @match        https://www.tradingview.com/chart/*
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @grant        none
+// @require      http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js
+// @require      https://gist.github.com/raw/2625891/waitForKeyElements.js
 // ==/UserScript==
 
-let seconds = 20;
-var loaded = null;
+waitForKeyElements ("div[class$='widgetbar-widget-reuters_calendar']", mainish)
 
-setInterval(() => {
-    console.log("Waiting on page load...");
-}, seconds * 1000);
-
-try {
-    loaded = document.querySelector("div[class$='widgetbar-widget-reuters_calendar']");
-    console.log(loaded);
-} catch(err) {
-    console.log("1" + err)
-}
-console.log(loaded);
-if (loaded) {
-    console.log("in loaded")
-} else {
-    console.log("not loaded")
-};
-
-
-function mainish() {
+function mainish(node) {
     'use strict';
 
     function hasClass(classes, search_str) {
