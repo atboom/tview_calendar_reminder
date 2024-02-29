@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         TradingView Economic Calendar Grabber
 // @namespace    http://tampermonkey.net/
-// @version      1.1.12
+// @version      1.1.13
 // @description  Get interesting events from economic calendar
 // @author       You
 // @match        https://www.tradingview.com/chart/*
@@ -80,17 +80,24 @@ function mainish(node) {
 
     var elem = document.querySelector("div[class$='widgetbar-widget-reuters_calendar']");
     console.log("elem: " + elem)
+    var calender_entries = null
+    var header = null
+    var rh = null
     try {
-        setInterval(() => { console.log('waiting')}, 5000);
-        var calender_entries = elem.querySelector("div[class^='economicCalendarItem']").parentElement.childNodes;
+        calender_entries = elem.querySelector("div[class^='economicCalendarItem']").parentElement.childNodes;
 
-        let header = elem.querySelector("div[class^='widgetHeader']");
-        let rh = header.querySelector("div[class^='rightSlot']");
+        rh = header.querySelector("div[class^='rightSlot']");    
+    } catch(err) {
+        console.log("1: " + err)
+    }
+    try {
+        header = elem.querySelector("div[class^='widgetHeader']");
+        rh = header.querySelector("div[class^='rightSlot']");
     
         addCopyButton(rh)
         addCheckBoxes(calender_entries)
     } catch(err) {
-        console.log("1: " + err)
+        console.log("2: " + err)
     }
     
 };
