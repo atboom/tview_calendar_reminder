@@ -78,7 +78,7 @@ function copyButtonClick() {
 function mainish(node) {
     'use strict';
 
-    setInterval(() => {"waiting in main"}, 10000);
+    setInterval(() => {console.log("waiting in main")}, 10000);
 
     var elem = document.querySelector("div[class$='widgetbar-widget-reuters_calendar']");
     console.log("elem: " + elem)
